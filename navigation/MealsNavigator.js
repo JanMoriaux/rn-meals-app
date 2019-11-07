@@ -1,5 +1,5 @@
 import React from "react";
-import { Platform } from "react-native";
+import { Text, Platform } from "react-native";
 
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
@@ -21,6 +21,12 @@ const defaultStackNavOptions = {
   // initialRouteName: "Categories",
   headerStyle: {
     backgroundColor: Platform.OS === "android" ? Colors.primaryColor : ""
+  },
+  headerTitleStyle: {
+    fontFamily: "open-sans-bold"
+  },
+  headerBackTitleStyle: {
+    fontFamily: "open-sans"
   },
   headerTintColor: Platform.OS === "android" ? "#fff" : Colors.primaryColor,
   headerTitle: "A Screen"
@@ -55,6 +61,12 @@ const tabScreenConfig = {
   Meals: {
     screen: MealsNavigator,
     navigationOptions: {
+      tabBarLabel:
+        Platform.OS === "android" ? (
+          <Text style={{ fontFamily: "open-sans-bold" }}>Meals</Text>
+        ) : (
+          "Meals"
+        ),
       tabBarIcon: tabInfo => {
         return (
           <Ionicons name="ios-restaurant" size={25} color={tabInfo.tintColor} />
@@ -66,7 +78,12 @@ const tabScreenConfig = {
   Favorites: {
     screen: FavNavigator,
     navigationOptions: {
-      tabBarLabel: "Favorites!",
+      tabBarLabel:
+        Platform.OS === "android" ? (
+          <Text style={{ fontFamily: "open-sans-bold" }}>Favorites</Text>
+        ) : (
+          "Favorites"
+        ),
       tabBarIcon: tabInfo => {
         return <Ionicons name="ios-star" size={25} color={tabInfo.tintColor} />;
       },
@@ -79,12 +96,15 @@ const MealsFavTabNavigator =
   Platform.OS === "android"
     ? createMaterialBottomTabNavigator(tabScreenConfig, {
         activeColor: "white",
-        shifting: true
+        shifting: true,
         // shifting: false,
-        // barStyle: { backgroundColor: Colors.primaryColor }
+        barStyle: { backgroundColor: Colors.primaryColor }
       })
     : createBottomTabNavigator(tabScreenConfig, {
         tabBarOptions: {
+          labelStyle: {
+            fontFamily: "open-sans-bold"
+          },
           activeTintColor: Colors.accentColor
         }
       });
