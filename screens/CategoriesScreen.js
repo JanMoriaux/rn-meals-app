@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  View,
-  Text,
-  Button,
-  FlatList,
-  StyleSheet,
-  TouchableOpacity
-} from "react-native";
+import { FlatList, StyleSheet } from "react-native";
 
 import CategoryGridTile from "../components/CategoryGridTile";
 
